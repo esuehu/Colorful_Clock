@@ -1,0 +1,11 @@
+body{
+    position: fixed;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+}
+p{
+    color:white;
+    font-size: 3rem;
+    font-family: 'Poppins', sans-serif;
+}
