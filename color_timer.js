@@ -16,9 +16,6 @@ function stopTimer(){
     clearInterval(timer);
 }
 function showTimer(){
-    
-    day = new Date().getDate();
-
 //#ffffffまで行ったらリセット,日を跨いだら一日分の秒数加算
     if (time > 16777215){
         time = 0;
