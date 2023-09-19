@@ -1,5 +1,6 @@
 # Colorful_Clock
-Converts the current time into an rgb colour code and draws it. Just that.
+Converts the current time into an rgb colour code and draws it.
+194 days to enjoy all the colours.
 
 https://kumori-ame.github.io/Colorful_Clock/
 
