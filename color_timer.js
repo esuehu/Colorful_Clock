@@ -25,6 +25,8 @@ function showTimer(){
 //#ffffffまで行ったらリセット,日を跨いだら一日分の秒数加算
     if (time > 16777215){
         time = 0;
+        origin = new Date().getTime();
+        day_memory = 0;
     }else if (which_day != day_memory){
         const buffer = 86400 * which_day;
         const date1 = new Date();
