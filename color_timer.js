@@ -1,40 +1,25 @@
-//origin,起動した日,which_day,起動してからの経過日数,day_memory,経過日数の比較用変数,time,経過秒数記録用,
-let origin = 0;
-let which_day = 0;
-let day_memory = 0;
+//origin,原点とする日付,time,経過秒数記録用,
+let origin = new Date(2023,8,18,16).getTime();
 let time = 0;
-let buffer = 0;
 
 let color_R = 0;
 let color_G = 0;
 let color_B = 0;
 let color_code = "";
 
-//起動してからの日数計算
-function whattimenow(){
-    let date_now = new Date();
-    which_day = parseInt(Number((date_now - origin)/1000)/ 86400);
-    console.log("Day '" + which_day.toString() +"' after wiped");
-}
 
 function startTimer(){
 //大体1秒おきに描画関数を呼び出し
     setInterval('showTimer()', 1000);
 }
 function showTimer(){
-//#ffffffまで行ったらリセット,日を跨いだら一日分の秒数加算
+//#ffffffまで行ったらリセット
     if (time > 16777215){
-        time = 0;
-        origin = new Date().getTime();
-        day_memory = 0;
-    }else if (which_day != day_memory){
-        const buffer = 86400 * which_day;
-        const date1 = new Date();
-        time = date1.getHours()*3600 + date1.getMinutes()*60 + date1.getSeconds() + buffer;
-        day_memory = which_day;
+        const cycle = parseInt(time / 1677215);
+        origin += cycle * 1677215*1000;
+        time = parseInt(Number(new Date().getTime() - origin)/1000);
     }else{
-        const date1 = new Date();
-        time = date1.getHours()*3600 + date1.getMinutes()*60 + date1.getSeconds() + buffer;
+        time = parseInt(Number(new Date().getTime() - origin)/1000);
     }
     let color = "#" + time.toString(16).toUpperCase().padStart(6,"0");
 
@@ -46,10 +31,9 @@ function showTimer(){
     console.log(parseInt(color.slice(1,7), 16));
     console.log(color);
     console.log(color_R,color_G,color_B);
-    whattimenow();
+
 //テキストと背景更新
     document.getElementById('timer').textContent="#" + time.toString(16).toUpperCase().padStart(6,"0");
     document.body.style.backgroundColor = `rgb(${color_R},${color_G},${color_B})`;
 }
-
-origin = new Date().getTime();
+time = parseInt(Number(new Date().getTime() - origin)/1000);
