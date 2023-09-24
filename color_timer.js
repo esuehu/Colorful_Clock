@@ -12,6 +12,14 @@ function startTimer(){
 //大体1秒おきに描画関数を呼び出し
     setInterval('showTimer()', 1000);
 }
+function clock(){
+    let time_now = new Date();
+    let h = time_now.getHours().toString();
+    let m = time_now.getMinutes().toString();
+    let s = time_now.getSeconds().toString();
+
+    return(h.padStart(2,"0") + ":" + m.padStart(2,"0") + ":" + s.padStart(2,"0"));
+}
 function showTimer(){
 //#ffffffまで行ったらリセット
     if (time > 16777215){
@@ -19,6 +27,7 @@ function showTimer(){
         origin += cycle * 1677215*1000;
         time = parseInt(Number(new Date().getTime() - origin)/1000);
     }else{
+        const time_now = new Date();
         time = parseInt(Number(new Date().getTime() - origin)/1000);
     }
     let color = "#" + time.toString(16).toUpperCase().padStart(6,"0");
@@ -34,6 +43,7 @@ function showTimer(){
 
 //テキストと背景更新
     document.getElementById('timer').textContent="#" + time.toString(16).toUpperCase().padStart(6,"0");
+    document.getElementById('clock').textContent = clock();
     document.body.style.backgroundColor = `rgb(${color_R},${color_G},${color_B})`;
 }
 time = parseInt(Number(new Date().getTime() - origin)/1000);
