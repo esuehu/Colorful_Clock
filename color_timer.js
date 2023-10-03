@@ -8,6 +8,7 @@ let color_B = 0;
 let color_code = "";
 
 let clock_query = document.querySelector('.clock');
+const toggle_clock_button = document.querySelector('.button_clock')
 
 
 function startTimer(){
@@ -23,9 +24,14 @@ function clock(){
     return(h.padStart(2,"0") + ":" + m.padStart(2,"0") + ":" + s.padStart(2,"0"));
 }
 function toggle_clock(e){
-    if (e.target == clock_query){
-        clock_query.classList.toggle("active");
+    if (e.target == toggle_clock_button && clock_query.className != "clock"){
+        clock_query.classList.remove('is-active');
+        clock_query.style.opacity = 0;
     }
+    else if (e.target == toggle_clock_button && clock_query.className == "clock"){
+        clock_query.classList.add('is-active');
+        clock_query.style.opacity = 1;
+    }   
 }
 function showTimer(){
 //#ffffffまで行ったらリセット

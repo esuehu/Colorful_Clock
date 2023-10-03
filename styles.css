@@ -10,16 +10,19 @@ body{
     font-size: 4rem;
     font-family: 'Poppins', sans-serif;
 }
-div #button_clock{
-    background-color: black;
-    border: solid;
-    border-color: #bbb;
+div img{
+    position: absolute;
+    cursor: pointer;
+    top: 2vh;
+    left: 1.5vw;
+}
+div img:hover{
+    border-radius: 45%;
+    background-color: rgba(255,255,255,0.2);
+    transition: background-color 0.5s;
 }
 #clock{
     opacity: 0;
-}
-#clock.isactive{
-    opacity: 1;
     color:white;
     font-size: 3em;
     font-family: 'Chakra Petch', sans-serif;
@@ -31,6 +34,10 @@ div #button_clock{
     bottom: 1.5vh;
 }
 @media (max-width: 900px) {
+    div img{
+        width: 48px;
+        height: 48px;
+    }
     #timer{
         font-size: 5rem;
     }
