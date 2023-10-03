@@ -7,6 +7,8 @@ let color_G = 0;
 let color_B = 0;
 let color_code = "";
 
+let clock_query = document.querySelector('.clock');
+
 
 function startTimer(){
 //大体1秒おきに描画関数を呼び出し
@@ -19,6 +21,11 @@ function clock(){
     let s = time_now.getSeconds().toString();
 
     return(h.padStart(2,"0") + ":" + m.padStart(2,"0") + ":" + s.padStart(2,"0"));
+}
+function toggle_clock(e){
+    if (e.target == clock_query){
+        clock_query.classList.toggle("active");
+    }
 }
 function showTimer(){
 //#ffffffまで行ったらリセット
@@ -46,4 +53,5 @@ function showTimer(){
     document.getElementById('clock').textContent = clock();
     document.body.style.backgroundColor = `rgb(${color_R},${color_G},${color_B})`;
 }
+addEventListener('click',toggle_clock);
 time = parseInt(Number(new Date().getTime() - origin)/1000);

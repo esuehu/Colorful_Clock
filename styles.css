@@ -10,7 +10,16 @@ body{
     font-size: 4rem;
     font-family: 'Poppins', sans-serif;
 }
+div #button_clock{
+    background-color: black;
+    border: solid;
+    border-color: #bbb;
+}
 #clock{
+    opacity: 0;
+}
+#clock.isactive{
+    opacity: 1;
     color:white;
     font-size: 3em;
     font-family: 'Chakra Petch', sans-serif;
