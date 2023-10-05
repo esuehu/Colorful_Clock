@@ -9,10 +9,11 @@ let color_code = "";
 
 let clock_query = document.querySelector('.clock');
 const toggle_clock_button = document.querySelector('.button_clock')
-
+let timer_mode = false;
 
 function startTimer(){
 //大体1秒おきに描画関数を呼び出し
+    
     setInterval('showTimer()', 1000);
 }
 function clock(){
@@ -23,15 +24,32 @@ function clock(){
 
     return(h.padStart(2,"0") + ":" + m.padStart(2,"0") + ":" + s.padStart(2,"0"));
 }
+function clock_draw(){
+    if(!timer_mode){
+        document.getElementById('clock').textContent = clock();
+    }
+    else{
+        document.getElementById('clock').textContent = time.toString() + "s";
+    }
+}
 function toggle_clock(e){
     if (e.target == toggle_clock_button && clock_query.className != "clock"){
-        clock_query.classList.remove('is-active');
-        clock_query.style.opacity = 0;
+        if(timer_mode){
+            clock_query.classList.remove('is-active');
+            clock_query.style.opacity = 0;
+            console.log("hide")
+            timer_mode = !timer_mode;
+        }
+        else{
+            timer_mode = !timer_mode;
+        }
+        console.log(timer_mode)
     }
     else if (e.target == toggle_clock_button && clock_query.className == "clock"){
         clock_query.classList.add('is-active');
         clock_query.style.opacity = 1;
     }   
+    clock_draw();
 }
 function showTimer(){
 //#ffffffまで行ったらリセット
@@ -54,9 +72,10 @@ function showTimer(){
     console.log(color);
     console.log(color_R,color_G,color_B);
 
+    clock_draw();
+
 //テキストと背景更新
     document.getElementById('timer').textContent="#" + time.toString(16).toUpperCase().padStart(6,"0");
-    document.getElementById('clock').textContent = clock();
     document.body.style.backgroundColor = `rgb(${color_R},${color_G},${color_B})`;
 }
 addEventListener('click',toggle_clock);
